@@ -1,0 +1,31 @@
+Standard: Cpp11
+BasedOnStyle: Google
+IndentWidth: 2
+ColumnLimit: 0
+PointerAlignment: Left
+AccessModifierOffset: -2
+NamespaceIndentation: Inner
+BreakBeforeBinaryOperators: All
+BreakBeforeBraces: Custom
+BraceWrapping:
+  AfterEnum: true
+  AfterStruct: false
+  AfterClass: false
+  SplitEmptyFunction: true
+  AfterControlStatement: false
+  AfterNamespace: false
+  AfterFunction: false
+  AfterUnion: true
+  AfterExternBlock: false
+  BeforeCatch: false
+  BeforeElse: false
+  SplitEmptyRecord: true
+  SplitEmptyNamespace: true
+
+BreakConstructorInitializers: AfterColon
+AlignOperands: true
+ConstructorInitializerAllOnOneLineOrOnePerLine: false
+BreakBeforeTernaryOperators: true
+BreakInheritanceList: AfterColon
+
+#https://clang.llvm.org/docs/ClangFormatStyleOptions.html
