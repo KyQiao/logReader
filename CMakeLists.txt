@@ -10,15 +10,15 @@ endif(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CXX_FLAGS)
 
 set(CMAKE_CXX_STANDARD 11)
 
-option(TEST "test example" ON)
+option(TEST "test example" OFF)
 
 
 file(GLOB PythonSOURCES
-    src/logreader.cpp
+    src/logReader.cpp
     src/python.cpp
     )
 
-set(SOURCES "src/logreader.cpp")
+set(SOURCES "src/logReader.cpp")
 
 
 set(HOME_INC_DIR "./src") 
