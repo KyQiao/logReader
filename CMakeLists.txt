@@ -27,6 +27,7 @@ include_directories(/src)
 
 add_subdirectory(pybind11)
 pybind11_add_module(_logReader ${PythonSOURCES})
+target_compile_definitions(_logReader PRIVATE VERSION_INFO=${VERSION_INFO})
 
 add_library(logReader ${SOURCES})
 
