@@ -46,7 +46,7 @@ class CMakeBuild(build_ext):
         cmake_args = [
             "-DCMAKE_LIBRARY_OUTPUT_DIRECTORY={}".format(extdir),
             "-DPYTHON_EXECUTABLE={}".format(sys.executable),
-            "-DEXAMPLE_VERSION_INFO={}".format(
+            "-DVERSION_INFO={}".format(
                 self.distribution.get_version()),
             # not used on MSVC, but no harm
             "-DCMAKE_BUILD_TYPE={}".format(cfg),
@@ -121,7 +121,7 @@ class CMakeBuild(build_ext):
 # logic and declaration, and simpler if you include description/version in a file.
 setup(
     name="logReader",
-    version="0.0.1",
+    version="0.1.1",
     author="Kaiyao QIAO",
     author_email="ustkyqiao@gmail.com",
     description="reading lammps log file",
