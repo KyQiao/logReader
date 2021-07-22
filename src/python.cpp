@@ -18,7 +18,9 @@ PYBIND11_MODULE(_logReader, m) {
       .def(py::init<const std::string&>())
       .def("read", (&logReader::read))
       .def("describe", (&logReader::describe))
-      .def("PythonAPI_getdata", (&logReader::PythonAPI_getdata));
+      // by default pybind11 return policy is take onwership which is not necessary here
+      // change to reference to solve double free problem
+      .def("PythonAPI_getdata", (&logReader::PythonAPI_getdata), py::return_value_policy::reference);
   // .def("update", (&logReader::update), py::arg("n") = 1)
   // .def("getData", [](logReader &self)
   //  { return intArray_t({self._size()}, self.getData()); });
@@ -26,6 +28,6 @@ PYBIND11_MODULE(_logReader, m) {
 #ifdef VERSION_INFO
   m.attr("__version__") = VERSION_INFO;
 #else
-  m.attr("__version__") = "0.0.1";
+  m.attr("__version__") = "0.1.2";
 #endif
 }

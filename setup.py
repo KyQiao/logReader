@@ -121,7 +121,7 @@ class CMakeBuild(build_ext):
 # logic and declaration, and simpler if you include description/version in a file.
 setup(
     name="logReader",
-    version="0.1.1",
+    version="0.1.2",
     author="Kaiyao QIAO",
     author_email="ustkyqiao@gmail.com",
     description="reading lammps log file",

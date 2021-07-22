@@ -10,7 +10,7 @@ endif(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CXX_FLAGS)
 
 set(CMAKE_CXX_STANDARD 11)
 
-option(TEST "test example" ON)
+option(TEST "test example" OFF)
 option(DEBUG "dev debug" OFF)
 
 file(GLOB PythonSOURCES
@@ -27,7 +27,7 @@ include_directories(/src)
 
 
 if(NOT DEFINED VERSION_INFO)
-set(VERSION_INFO "\"0.1.1\"")
+set(VERSION_INFO "\"0.1.2\"")
 endif(NOT DEFINED VERSION_INFO)
 
 
