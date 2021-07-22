@@ -10,8 +10,8 @@ endif(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CXX_FLAGS)
 
 set(CMAKE_CXX_STANDARD 11)
 
-option(TEST "test example" OFF)
-
+option(TEST "test example" ON)
+option(DEBUG "dev debug" OFF)
 
 file(GLOB PythonSOURCES
     src/logReader.cpp
@@ -25,11 +25,20 @@ set(HOME_INC_DIR "./src")
 include_directories(/src)
 
 
+
+if(NOT DEFINED VERSION_INFO)
+set(VERSION_INFO "\"0.1.1\"")
+endif(NOT DEFINED VERSION_INFO)
+
+
 add_subdirectory(pybind11)
 pybind11_add_module(_logReader ${PythonSOURCES})
 target_compile_definitions(_logReader PRIVATE VERSION_INFO=${VERSION_INFO})
 
 add_library(logReader ${SOURCES})
+if(DEBUG)
+  target_compile_definitions(logReader PRIVATE debug)
+endif(DEBUG)
 
 IF(TEST)
   enable_testing()
