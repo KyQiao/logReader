@@ -1,11 +1,19 @@
 #include "logReader.hpp"
-
+#ifndef debug
 #define debug 0
 
 auto match = [](std::string target, std::string pattern) {
   size_t size = pattern.size();
   return (target.size() >= size && target.substr(0, size) == pattern);
 };
+
+void replace(std::string& s, const char& target, const char& t) {
+  for (size_t i = 0; i < s.size(); i++) {
+    if (s[i] == target)
+      s[i] = t;
+  }
+}
+
 readFlag logReader::checker(std::string s) {
   if (match(s, "Created orthogonal box")) {
     // read box info
@@ -63,6 +71,19 @@ void logReader::read(std::string fileName) {
     // clear stringstream state
     ss.clear();
     // input new string line
+    ss << line;
+    // using sstream is quite tricky. above is the way to rewrite buffer
+  };
+
+  // get string into ss with replace
+  auto ssGetReplace = [&file, &line, &ss](const char& s, const char& t) {
+    getline(file, line);
+    // reset buf as empty
+    ss.str("");
+    // clear stringstream state
+    ss.clear();
+    // input new string line
+    replace(line, s, t);
     ss << line;
     // using sstream is quite tricky. above is the way to rewrite buffer
   };
@@ -250,7 +271,7 @@ void logReader::read(std::string fileName) {
       // read Pair info
       {
         size_t index = 0;
-        ssGet();
+        ssGetReplace('|',' ');
 #if debug
         std::cout << "3" << std::endl;
         std::cout << "parsing:" << ss.str() << std::endl;
@@ -268,7 +289,7 @@ void logReader::read(std::string fileName) {
       // read Neigh info
       {
         size_t index = 0;
-        ssGet();
+        ssGetReplace('|',' ');;
 #if debug
         std::cout << "4" << std::endl;
         std::cout << "parsing:" << ss.str() << std::endl;
@@ -286,7 +307,7 @@ void logReader::read(std::string fileName) {
       // read Comm info
       {
         size_t index = 0;
-        ssGet();
+        ssGetReplace('|',' ');;
 #if debug
         std::cout << "5" << std::endl;
         std::cout << "parsing:" << ss.str() << std::endl;
@@ -304,7 +325,7 @@ void logReader::read(std::string fileName) {
       // read Output info
       {
         size_t index = 0;
-        ssGet();
+        ssGetReplace('|',' ');;
 #if debug
         std::cout << "6" << std::endl;
         std::cout << "parsing:" << ss.str() << std::endl;
@@ -322,7 +343,7 @@ void logReader::read(std::string fileName) {
       // read Modify info
       {
         size_t index = 0;
-        ssGet();
+        ssGetReplace('|',' ');;
 #if debug
         std::cout << "7" << std::endl;
         std::cout << "parsing:" << ss.str() << std::endl;
@@ -340,7 +361,7 @@ void logReader::read(std::string fileName) {
       // read Other info
       {
         size_t index = 0;
-        ssGet();
+        ssGetReplace('|',' ');;
 #if debug
         std::cout << "8" << std::endl;
         std::cout << "parsing:" << ss.str() << std::endl;
@@ -361,3 +382,4 @@ void logReader::read(std::string fileName) {
     }
   }  // end of reading file
 };
+#endif
